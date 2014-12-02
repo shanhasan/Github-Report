@@ -1,4 +1,7 @@
 require 'sinatra'
+require 'dotenv'
+Dotenv.load
+
 
 class GithubProfile < Sinatra::Base
 
