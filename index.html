@@ -7,27 +7,27 @@
 
   <form id='add_profiles'>
     <input id='username' placeholder='Enger a Github username'>
-    <button type='submit'>Load profiles</button>
+    <button type='submit'>Load profile</button>
   </form>
 
-  <div class='profile-container'>
-    <div class='profile'>
-      <div class='left'>
-        <img src="https://avatars.githubusercontent.com/u/5008648?">
+  <template>
+    <div class="profile">
+      <div class="left">
+        <img src="{{ avatar_url }}">
       </div>
 
       <div class="right">
         <h3>
-          <a href="https://github.com/tansaku">
+          <a href="{{ html_url }}">
             tansaku
           </a>
         </h3>
-        <h4> Repos: 120</h4>
-        <h4> Followers: 122</h4>
+        <h4>Repos: {{ public_repos }}</h4>
+        <h4>Followers: {{ public_followers }}</h4>
       </div>
       <br clear="all">
     </div>
-  </div>
+  </template>
 
   <script src='https://code.jquery.com/jquery-2.1.1.min.js'></script>
   <script>
