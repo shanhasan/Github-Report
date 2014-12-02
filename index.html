@@ -1,43 +1,47 @@
 <html>
-<head>
-  <title>Girhub profiles</title>
-  <link rel='stylesheet' type="text/css" href='github.css'>
-</head>
-<body>
+  <head>
+    <title>Github profiles</title>
+    <link rel='stylesheet' type="text/css" href='github.css'>
+  </head>
+  <body>
 
-  <form id='add_profiles'>
-    <input id='username' placeholder='Enger a Github username'>
-    <button type='submit'>Load profile</button>
-  </form>
+    <form id='add_profiles'>
+      <input id='username' placeholder='Enter a Github username'>
+      <button type='submit'>Load profile</button>
+    </form>
 
-  <template>
-    <div class="profile">
-      <div class="left">
-        <img src="{{ avatar_url }}">
-      </div>
-
-      <div class="right">
-        <h3>
-          <a href="{{ html_url }}">
-            tansaku
-          </a>
-        </h3>
-        <h4>Repos: {{ public_repos }}</h4>
-        <h4>Followers: {{ public_followers }}</h4>
-      </div>
-      <br clear="all">
+    <div class='profile-container'>
     </div>
-  </template>
 
-  <script src='https://code.jquery.com/jquery-2.1.1.min.js'></script>
-  <script>
-  $(document).ready(function(){
-    $.get('https://api.github.com/users/tansaku', function(user){
-      alert(user);
-    })
-  });
+    <template id="profile-template">
+      <div class="profile">
+        <div class="left">
+          <img src="{{ avatar_url }}">
+        </div>
 
-  </script>
+        <div class="right">
+          <h3>
+            <a href="{{ html_url }}">
+              tansaku
+            </a>
+          </h3>
+          <h4>Repos: {{ public_repos }}</h4>
+          <h4>Followers: {{ followers }}</h4>
+        </div>
+        <br clear="all">
+      </div>
+    </template>
 
-</body>
+    <script src='https://code.jquery.com/jquery-2.1.1.min.js'></script>
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/mustache.js/0.8.1/mustache.min.js'></script>
+    <script>
+    $(document).ready(function(){
+      $.get('https://api.github.com/users/tansaku', function(user){
+        var newProfile = Mustache.render($('#profile-template').html(), user);
+        $('.profile-container').append(newProfile);
+      })
+    });
+    </script>
+
+  </body>
 </html>
